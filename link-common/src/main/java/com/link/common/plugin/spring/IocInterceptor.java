@@ -34,5 +34,6 @@ public class IocInterceptor implements Interceptor {
                 throw new RuntimeException();
             }
         }
+        invocation.invoke();
     }
 }

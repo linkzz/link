@@ -28,6 +28,10 @@
             <groupId>com.link</groupId>
             <artifactId>link-cms-rpc-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.link</groupId>
+            <artifactId>link-common</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>link-cms-admin</finalName>
