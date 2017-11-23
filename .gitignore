@@ -1,0 +1,13 @@
+/target/
+.classpath
+.gitignore.swp
+.project
+/.settings/
+.mymetadata
+
+.idea
+*.iml
+/generatorConfig.xml
+
+/build/
+/.gradle/
