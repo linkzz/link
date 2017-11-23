@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>link</artifactId>
+        <groupId>com.link</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>link-cms</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>link-cms-admin</module>
+        <module>link-cms-dao</module>
+        <module>link-cms-rpc-api</module>
+        <module>link-cms-rpc-service</module>
+        <module>link-cms-web</module>
+        <module>link-cms-common</module>
+    </modules>
+    <properties>
+        <link-cms-admin.version>1.0-SNAPSHOT</link-cms-admin.version>
+        <link-cms-common.version>1.0-SNAPSHOT</link-cms-common.version>
+        <link-cms-dao.version>1.0-SNAPSHOT</link-cms-dao.version>
+        <link-cms-rpc-api.version>1.0-SNAPSHOT</link-cms-rpc-api.version>
+        <link-cms-rpc-service.version>1.0-SNAPSHOT</link-cms-rpc-service.version>
+        <link-cms-web.version>1.0-SNAPSHOT</link-cms-web.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-admin</artifactId>
+                <version>${link-cms-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-common</artifactId>
+                <version>${link-cms-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-dao</artifactId>
+                <version>${link-cms-dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-rpc-api</artifactId>
+                <version>${link-cms-rpc-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-rpc-service</artifactId>
+                <version>${link-cms-rpc-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.link</groupId>
+                <artifactId>link-cms-web</artifactId>
+                <version>${link-cms-web.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,66 @@
+Table: cms_article
+------------------+---------------+------+-----+---------+---------
+ Field            | Type          | Null | Key | Default | Remarks 
+------------------+---------------+------+-----+---------+---------
+ id               | VARCHAR(36)   | NO   | PRI |         | 主键      
+ cid              | VARCHAR(36)   | YES  |     |         | 所属栏目ID  
+ title            | VARCHAR(255)  | YES  |     |         | 标题      
+ description      | VARCHAR(1000) | YES  |     |         | 摘要      
+ view             | INT(10)       | YES  |     | 0       | 浏览量     
+ status           | VARCHAR(10)   | YES  |     |         | 状态      
+ hits             | VARCHAR(10)   | YES  |     |         | 置顶      
+ good             | VARCHAR(10)   | YES  |     |         | 推荐      
+ sorter           | INT(10)       | YES  |     |         | 排序      
+ content          | TEXT(65535)   | YES  |     |         | 内容      
+ bold             | VARCHAR(10)   | YES  |     | 1       | 加粗      
+ italic           | VARCHAR(10)   | YES  |     | 1       | 斜体      
+ color            | VARCHAR(10)   | YES  |     | 1       | 颜色      
+ img              | VARCHAR(255)  | YES  |     |         | 封面图片    
+ startip          | VARCHAR(255)  | YES  |     |         | 开始IP    
+ endip            | VARCHAR(255)  | YES  |     |         | 结束IP    
+ createtime       | VARCHAR(20)   | YES  |     |         | 创建时间    
+ modifytime       | VARCHAR(20)   | YES  |     |         | 修改时间    
+ authorId         | VARCHAR(36)   | YES  |     |         | 作者id    
+ authorName       | VARCHAR(50)   | YES  |     |         | 作者名称    
+ modifyAuthorName | VARCHAR(50)   | YES  |     |         |         
+ modifyAuthorId   | VARCHAR(36)   | YES  |     |         |         
+------------------+---------------+------+-----+---------+---------
+
+Table: cms_category
+------------------+--------------+------+-----+---------+---------
+ Field            | Type         | Null | Key | Default | Remarks 
+------------------+--------------+------+-----+---------+---------
+ id               | VARCHAR(36)  | NO   | PRI |         | 主键      
+ name             | VARCHAR(50)  | YES  |     |         | 名称      
+ parent           | VARCHAR(36)  | YES  |     |         | 父级id    
+ url              | VARCHAR(255) | YES  |     |         | url地址   
+ type             | VARCHAR(10)  | YES  |     | 1       |         
+ hide             | VARCHAR(10)  | YES  |     | 0       |         
+ sorter           | INT(10)      | YES  |     | 0       |         
+ target           | VARCHAR(10)  | YES  |     | 0       |         
+ loaded           | VARCHAR(10)  | YES  |     | 1       |         
+ topicId          | VARCHAR(36)  | YES  |     |         | 专题ID    
+ createtime       | VARCHAR(20)  | YES  |     |         | 创建时间    
+ authorId         | VARCHAR(36)  | YES  |     |         | 创建人ID   
+ authorName       | VARCHAR(100) | YES  |     |         | 创建人     
+ modifytime       | VARCHAR(20)  | YES  |     |         |         
+ modifyAuthorId   | VARCHAR(36)  | YES  |     |         |         
+ modifyAuthorName | VARCHAR(50)  | YES  |     |         |         
+------------------+--------------+------+-----+---------+---------
+
+Table: cms_topic
+------------------+--------------+------+-----+---------+---------
+ Field            | Type         | Null | Key | Default | Remarks 
+------------------+--------------+------+-----+---------+---------
+ id               | VARCHAR(36)  | NO   | PRI |         | 主键      
+ name             | VARCHAR(200) | NO   |     |         | 专题名称    
+ img              | VARCHAR(255) | YES  |     |         | 封面图     
+ type             | VARCHAR(2)   | YES  |     |         | 专题类型    
+ createtime       | VARCHAR(20)  | YES  |     |         | 创建时间    
+ modifytime       | VARCHAR(20)  | YES  |     |         | 修改时间    
+ authorId         | VARCHAR(36)  | YES  |     |         | 创建者     
+ authorName       | VARCHAR(50)  | YES  |     |         | 创建者ID   
+ modifyAuthorId   | VARCHAR(36)  | YES  |     |         | 修改者ID   
+ modifyAuthorName | VARCHAR(50)  | YES  |     |         | 修改者ID   
+------------------+--------------+------+-----+---------+---------
+
