@@ -1,4 +1,4 @@
-package com.link.cms.rpc.service.base.impl;
+package com.link.cms.rpc.service.impl.base;
 
 import com.jfinal.plugin.activerecord.Model;
 import com.link.cms.common.common.ResultJson;

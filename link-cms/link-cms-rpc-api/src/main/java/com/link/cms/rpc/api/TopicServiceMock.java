@@ -24,7 +24,7 @@ public class TopicServiceMock implements TopicServiceI {
 
     @Override
     public String sysHello(String name) {
-        return null;
+        return "降级处理";
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.jfinal.kit.LogKit;
 import com.link.cms.common.common.ResultJson;
 import com.link.cms.model.Topic;
 import com.link.cms.rpc.api.TopicServiceI;
-import com.link.cms.rpc.service.base.impl.BaseServiceImpl;
+import com.link.cms.rpc.service.impl.base.BaseServiceImpl;
 
 public class TopicServiceImpl extends BaseServiceImpl implements TopicServiceI {
     @Override
