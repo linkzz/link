@@ -12,6 +12,7 @@
         <module>link-common</module>
         <module>link-cms</module>
         <module>link-upms</module>
+        <module>link-pay</module>
     </modules>
 
     <properties>
