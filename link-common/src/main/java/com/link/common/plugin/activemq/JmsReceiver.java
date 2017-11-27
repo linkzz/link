@@ -1,6 +1,8 @@
 package com.link.common.plugin.activemq;
 
+import com.jfinal.kit.LogKit;
 import org.apache.activemq.pool.PooledConnection;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.jms.*;
 import java.util.Enumeration;
@@ -15,7 +17,7 @@ public class JmsReceiver implements MessageListener {
     private String name;
     private Session session;
     private MessageConsumer consumer;
-
+    ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
     /**
      * @Description: 初始化消息消费者
      * @author: linkzz
@@ -38,40 +40,48 @@ public class JmsReceiver implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        try {
-            if (message instanceof TextMessage) {
-                TextMessage msg = (TextMessage) message;
-                System.out.println(msg.getText());
-            } else if (message instanceof MapMessage) {
-                MapMessage msg = (MapMessage) message;
-                Enumeration enumer = msg.getMapNames();
-                while (enumer.hasMoreElements()) {
-                    Object obj = enumer.nextElement();
-                    System.out.println(msg.getObject(obj.toString()));
+        /**
+         * 使用线程池多线程处理
+         */
+        threadPoolTaskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (message instanceof TextMessage) {
+                        TextMessage msg = (TextMessage) message;
+                        LogKit.info(msg.getText());
+                    } else if (message instanceof MapMessage) {
+                        MapMessage msg = (MapMessage) message;
+                        Enumeration enumer = msg.getMapNames();
+                        while (enumer.hasMoreElements()) {
+                            Object obj = enumer.nextElement();
+                            System.out.println(msg.getObject(obj.toString()));
+                        }
+                    } else if (message instanceof StreamMessage) {
+                        StreamMessage msg = (StreamMessage) message;
+                        LogKit.info(msg.readString());
+                        System.out.println(msg.readBoolean());
+                        System.out.println(msg.readLong());
+                    } else if (message instanceof ObjectMessage) {
+                        ObjectMessage msg = (ObjectMessage) message;
+                        System.out.println(msg);
+                    } else if (message instanceof BytesMessage) {
+                        BytesMessage msg = (BytesMessage) message;
+                        byte[] byteContent = new byte[1024];
+                        int length = -1;
+                        StringBuffer content = new StringBuffer();
+                        while ((length = msg.readBytes(byteContent)) != -1) {
+                            content.append(new String(byteContent, 0, length));
+                        }
+                        System.out.println(content.toString());
+                    } else {
+                        System.out.println(message);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } else if (message instanceof StreamMessage) {
-                StreamMessage msg = (StreamMessage) message;
-                System.out.println(msg.readString());
-                System.out.println(msg.readBoolean());
-                System.out.println(msg.readLong());
-            } else if (message instanceof ObjectMessage) {
-                ObjectMessage msg = (ObjectMessage) message;
-                System.out.println(msg);
-            } else if (message instanceof BytesMessage) {
-                BytesMessage msg = (BytesMessage) message;
-                byte[] byteContent = new byte[1024];
-                int length = -1;
-                StringBuffer content = new StringBuffer();
-                while ((length = msg.readBytes(byteContent)) != -1) {
-                    content.append(new String(byteContent, 0, length));
-                }
-                System.out.println(content.toString());
-            } else {
-                System.out.println(message);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     public String getName() {
