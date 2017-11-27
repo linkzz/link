@@ -7,5 +7,8 @@ package com.link.common.plugin.activemq;
  * @create 2017-11-23 9:13
  */
 public enum Destination {
-    Queue, Topic
+    //队列消息
+    Queue,
+    //主题消息
+    Topic
 }

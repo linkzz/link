@@ -18,6 +18,7 @@ public interface BaseServiceI {
      * @param jqGrid jqGrid 封装的参数
      * @param model 模型参数
      * @param table 操作的表
+     * @return DataGrid 数据表格封装
      * @data: 2017-05-07 0:10
      */
     DataGrid dataGrid(JqGrid jqGrid, Model model, String table);

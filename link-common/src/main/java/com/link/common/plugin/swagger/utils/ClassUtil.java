@@ -59,10 +59,10 @@ public class ClassUtil {
                 URL url = urls.nextElement();
                 if (url != null) {
                     String protocol = url.getProtocol();
-                    if (protocol.equals("file")) {
+                    if ("file".equals(protocol)) {
                         String packagePath = url.getPath().replace("%20", " ");
                         addClass(classSet, packagePath, packageName);
-                    } else if (protocol.equals("jar")) {
+                    } else if ("jar".equals(protocol)) {
                         JarURLConnection jarURLConnection = (JarURLConnection) url.openConnection();
                         if (jarURLConnection != null) {
                             JarFile jarFile = jarURLConnection.getJarFile();

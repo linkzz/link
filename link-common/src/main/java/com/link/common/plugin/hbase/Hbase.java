@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Hbase {
     private static final Logger logger = LoggerFactory.getLogger(Thread.currentThread().getClass());
-    private static final String aggregateImplementationCoprocessor = "org.apache.hadoop.hbase.coprocessor.AggregateImplementation";
+    private static final String AGGREGATEIMPLEMENTATIONCOPROCESSOR = "org.apache.hadoop.hbase.coprocessor.AggregateImplementation";
     public static Connection connection;
     public static AggregationClient aggregationClient;
     public static LongColumnInterpreter longColumnInterpreter = new LongColumnInterpreter();
@@ -38,7 +38,7 @@ public class Hbase {
         Admin admin = getAdmin(connection);
         try {
             HTableDescriptor hTableDescriptor = new HTableDescriptor(TableName.valueOf(tableName));
-            hTableDescriptor.addCoprocessor(aggregateImplementationCoprocessor);
+            hTableDescriptor.addCoprocessor(AGGREGATEIMPLEMENTATIONCOPROCESSOR);
             for (String familyName : familyNames) {
                 HColumnDescriptor family = new HColumnDescriptor(familyName);
                 hTableDescriptor.addFamily(family);

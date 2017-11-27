@@ -3,7 +3,7 @@ package com.link.cms.admin.controller;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.LogKit;
 import com.link.cms.rpc.api.TopicServiceI;
-import com.link.common.plugin.spring.Inject;
+import com.link.common.plugin.spring.Inject.BY_NAME;
 
 /**
  * 专题管理
@@ -12,7 +12,7 @@ import com.link.common.plugin.spring.Inject;
  */
 public class TopicController extends Controller {
 
-    @Inject.BY_NAME
+    @BY_NAME
     TopicServiceI topicService;
 
     public void sayhello(){

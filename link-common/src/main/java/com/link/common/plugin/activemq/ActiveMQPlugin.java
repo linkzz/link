@@ -25,7 +25,7 @@ public class ActiveMQPlugin implements IPlugin {
     }
     public ActiveMQPlugin(String url) {
         this.url = url;
-        this.name = ActiveMQKit.defaultName;
+        this.name = ActiveMQKit.DEFAULTNAME;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ActiveMQPlugin implements IPlugin {
         try {
             PooledConnection connection = (PooledConnection) pooledConnectionFactory.createConnection();
             connection.start();
-            ActiveMQKit.pooledConnectionMap.put(name, connection);
+            ActiveMQKit.POOLEDCONNECTIONMAP.put(name, connection);
         } catch (JMSException e) {
             e.printStackTrace();
         }

@@ -12,7 +12,10 @@ import java.util.List;
  */
 public class TreeKit{
     private List<Record> list = new ArrayList<>();
-    private List<Record> jqGridList = new ArrayList<>();//排序完成后的list
+    /**
+     * 排序完成后的list
+     */
+    private List<Record> jqGridList = new ArrayList<>();
     private String node_id = "id";
     private Record parent;
 

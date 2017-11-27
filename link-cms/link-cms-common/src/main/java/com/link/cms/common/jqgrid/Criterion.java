@@ -15,20 +15,43 @@ import java.util.Map;
  */
 public class Criterion {
 
-	// 定义枚举类型 条件类型
+	/**
+	 * 定义枚举类型 条件类型
+	 */
 	public static enum CriterionType {
-		EQUAL, LIKE, COMPARE, NOT_LIKE
+		//相等
+		EQUAL,
+		//相似
+		LIKE,
+		//比较
+		COMPARE,
+		//不相似
+		NOT_LIKE
 	}
 
-	// 定义枚举类型 比较类型
+	/**
+	 * 定义枚举类型 比较类型
+	 */
 	public static enum CompareType {
 		GT, GTE, LT, LTE, EQ, NE
 	}
 
-	private CriterionType criterionType; // 条件类型
-	private String tableName; // 表名
-	private String field; // 字段名
-	private Object value; // 对应值
+	/**
+	 * 条件类型
+	 */
+	private CriterionType criterionType;
+	/**
+	 * 表名
+	 */
+	private String tableName;
+	/**
+	 * 字段名
+	 */
+	private String field;
+	/**
+	 * 对应值
+	 */
+	private Object value;
 
 	public CriterionType getCriterionType() {
 		return criterionType;

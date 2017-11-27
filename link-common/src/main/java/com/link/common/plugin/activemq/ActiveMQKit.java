@@ -11,33 +11,33 @@ import java.util.concurrent.ConcurrentHashMap;
  * @create 2017-11-23 9:38
  */
 public class ActiveMQKit {
-    public static final String defaultName = "main";
-    public static final ConcurrentHashMap<String, PooledConnection> pooledConnectionMap = new ConcurrentHashMap<>();
-    public static final ConcurrentHashMap<String, JmsSender> senderMap = new ConcurrentHashMap<>();
-    public static final ConcurrentHashMap<String, JmsReceiver> receiverMap = new ConcurrentHashMap<>();
+    public static final String DEFAULTNAME = "main";
+    public static final ConcurrentHashMap<String, PooledConnection> POOLEDCONNECTIONMAP = new ConcurrentHashMap<>();
+    public static final ConcurrentHashMap<String, JmsSender> SENDERMAP = new ConcurrentHashMap<>();
+    public static final ConcurrentHashMap<String, JmsReceiver> RECEIVERMAP = new ConcurrentHashMap<>();
 
     public static void addSender(JmsSender sender) {
-        senderMap.put(sender.getName(), sender);
+        SENDERMAP.put(sender.getName(), sender);
     }
 
     public static JmsSender getSender(String name) {
-        return senderMap.get(name);
+        return SENDERMAP.get(name);
     }
 
     public static void addReceiver(JmsReceiver receiver) {
-        receiverMap.put(receiver.getName(), receiver);
+        RECEIVERMAP.put(receiver.getName(), receiver);
     }
     public static JmsReceiver getReceiver(String name) {
-        return receiverMap.get(name);
+        return RECEIVERMAP.get(name);
     }
 
     public static void addConnection(String connectionName, PooledConnection connection) {
-        pooledConnectionMap.put(connectionName, connection);
+        POOLEDCONNECTIONMAP.put(connectionName, connection);
     }
     public static PooledConnection getConnection() {
-        return pooledConnectionMap.get(defaultName);
+        return POOLEDCONNECTIONMAP.get(DEFAULTNAME);
     }
     public static PooledConnection getConnection(String connectionName) {
-        return pooledConnectionMap.get(connectionName);
+        return POOLEDCONNECTIONMAP.get(connectionName);
     }
 }

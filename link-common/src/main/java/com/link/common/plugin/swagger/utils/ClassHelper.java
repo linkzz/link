@@ -21,10 +21,10 @@ public final class ClassHelper {
      */
     private static final Set<Class<?>> CLASS_SET;
 
-    private static final Prop prop = PropKit.use("config.properties");
+    private static final Prop PROP = PropKit.use("config.properties");
 
     static {
-        String basePackage = prop.get("swagger.base_package");
+        String basePackage = PROP.get("swagger.base_package");
         CLASS_SET = ClassUtil.getClassSet(basePackage);
     }
 
