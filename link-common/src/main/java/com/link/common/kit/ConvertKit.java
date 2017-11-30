@@ -7,6 +7,10 @@ package com.link.common.kit;
  * @data: 2017-06-28 11:34
 */
 public class ConvertKit {
+    protected static final String UNKNOWN ="unknown";
+    private ConvertKit(){
+        throw new IllegalStateException("ConvertKit.class");
+    }
     /**
      * @Description: boolean 值和 0/1的转换
      * @author: linkzz
@@ -27,13 +31,13 @@ public class ConvertKit {
     */
     public static String getRemoteHost(javax.servlet.http.HttpServletRequest request){
         String ip = request.getHeader("x-forwarded-for");
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if(ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)){
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if(ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)){
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if(ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)){
             ip = request.getRemoteAddr();
         }
         return "0:0:0:0:0:0:0:1".equals(ip) ?"127.0.0.1":ip;

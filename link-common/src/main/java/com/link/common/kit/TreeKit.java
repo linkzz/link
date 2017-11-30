@@ -13,15 +13,16 @@ import java.util.List;
 public class TreeKit{
     private List<Record> list = new ArrayList<>();
     /**
+     * jqgrid 数表格复用字段
+     */
+    private static final String ISLEAF = "isLeaf";
+    private static final String EXPANDED = "expanded";
+    private static final String LEVEL = "level";
+    private static final String PARENT = "parent";
+    /**
      * 排序完成后的list
      */
     private List<Record> jqGridList = new ArrayList<>();
-    private String node_id = "id";
-    private Record parent;
-
-    public void setNode_id(String node_id) {
-        this.node_id = node_id;
-    }
 
     public TreeKit(List<Record> list){
         this.list = list;
@@ -38,22 +39,22 @@ public class TreeKit{
     }
 
     public void deepSearchChildNodes(Record parent){
-        parent.set("isLeaf",false);
-        parent.set("expanded",true);
+        parent.set(ISLEAF,false);
+        parent.set(EXPANDED,true);
         List<Record> findChildAtNode = findChildAtNode(parent);
-        if (findChildAtNode.size() > 0){
+        if (findChildAtNode.isEmpty()){
             for (Record n : findChildAtNode){
-                if (parent.get("level") == null){
-                    parent.set("level","0");
+                if (parent.get(LEVEL) == null){
+                    parent.set(LEVEL,"0");
                 }
-                n.set("level",String.valueOf(Integer.parseInt(parent.get("level"))+1));
-                n.set("expanded",true);
+                n.set(LEVEL,String.valueOf(Integer.parseInt(parent.get(LEVEL))+1));
+                n.set(EXPANDED,true);
             }
         }else {
-            parent.set("isLeaf",true);
-            parent.set("expanded",false);
+            parent.set(ISLEAF,true);
+            parent.set(EXPANDED,false);
         }
-        while (findChildAtNode.size() > 0){
+        while (findChildAtNode.isEmpty()){
             jqGridList.add(findChildAtNode.get(0));
             deepSearchChildNodes(findChildAtNode.get(0));
             findChildAtNode.remove(0);
@@ -63,8 +64,8 @@ public class TreeKit{
     public List<Record> findRoots(){
         List<Record> roots = new ArrayList<>();
         for (Record n : list){
-            if (n.get("parent") == null || "".equals(n.get("parent"))){
-                n.set("level","0");
+            if (n.get(PARENT) == null || "".equals(n.get(PARENT))){
+                n.set(LEVEL,"0");
                 roots.add(n);
             }
         }
@@ -77,7 +78,7 @@ public class TreeKit{
             if (n == currentNode) {
                 continue;
             }
-            if (currentNode.get("id").equals(n.get("parent"))){
+            if (currentNode.get("id").equals(n.get(PARENT))){
                 childs.add(n);
             }
         }

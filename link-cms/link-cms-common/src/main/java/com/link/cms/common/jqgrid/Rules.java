@@ -6,9 +6,9 @@ package com.link.cms.common.jqgrid;
  * @date 2017-05-12
  */
 public class Rules {
-    public String field;
-    public String op;
-    public String data;
+    private String field;
+    private String op;
+    private String data;
 
     public String getField() {
         return field;

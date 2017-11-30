@@ -1,20 +1,20 @@
 package com.link.common.plugin.hbase;
 
+import com.jfinal.kit.LogKit;
 import com.jfinal.plugin.IPlugin;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.coprocessor.AggregationClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 /**
- * Created by linkzz on 2017-09-22.
+ * Hbase 插件
+ * @author linkzz
+ * @date 2017-09-22
  */
 public class HbasePlugin implements IPlugin {
-    private static final Logger logger = LoggerFactory.getLogger(Thread.currentThread().getClass());
     private String quorum;
     private String znode = "/hbase";
     private String encoding = "UTF-8";
@@ -29,27 +29,27 @@ public class HbasePlugin implements IPlugin {
         config.set("hbase.zookeeper.znode.parent", znode);
         config.set("hbase.encoding", encoding);
         try {
-            Hbase.connection = ConnectionFactory.createConnection(config);
+            HbaseKit.connection = ConnectionFactory.createConnection(config);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
-        Hbase.aggregationClient = new AggregationClient(config);
+        HbaseKit.aggregationClient = new AggregationClient(config);
         return true;
     }
 
     @Override
     public boolean stop() {
-        if (!Hbase.connection.isClosed()) {
+        if (!HbaseKit.connection.isClosed()) {
             try {
-                Hbase.connection.close();
+                HbaseKit.connection.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
         try {
-            Hbase.aggregationClient.close();
+            HbaseKit.aggregationClient.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
         return true;
     }

@@ -1,6 +1,7 @@
 package com.link.cms.admin.config;
 
 import com.jfinal.config.*;
+import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
@@ -42,6 +43,6 @@ public class AdminConfig extends JFinalConfig{
 
     @Override
     public void configHandler(Handlers handlers) {
-
+        handlers.add(new ContextPathHandler("ctx"));
     }
 }

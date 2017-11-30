@@ -79,11 +79,11 @@ public class JqGrid {
     /**
      * 返回结果代码
      */
-    public String resultCode;
+    private String resultCode;
     /**
      * 返回结果信息
      */
-    public String resultMsg;
+    private String resultMsg;
 
     public int getPage() {
         return page;

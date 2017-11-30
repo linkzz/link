@@ -2,6 +2,7 @@ package com.link.common.plugin.spring;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.kit.LogKit;
 import org.springframework.context.ApplicationContext;
 
 import java.lang.reflect.Field;
@@ -31,7 +32,7 @@ public class IocInterceptor implements Interceptor {
                     field.set(invocation.getTarget(),bean);
                 }
             }catch (Exception e){
-                throw new RuntimeException();
+                LogKit.info(e.getMessage());
             }
         }
         invocation.invoke();

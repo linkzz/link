@@ -33,9 +33,9 @@ public enum CmsResultConstant {
      */
     INVALID_PARAMETER(20003, "Invalid parameter");
 
-    public int code;
+    private int code;
 
-    public String message;
+    private String message;
 
     CmsResultConstant(int code, String message) {
         this.code = code;

@@ -8,9 +8,9 @@ import java.util.List;
  * @date 2017-05-12
  */
 public class Groups {
-    public String groupOp;
-    public List<Rules> rules;
-    public List<Groups> groups;
+    private String groupOp;
+    private List<Rules> rules;
+    private List<Groups> groupsList;
 
     public String getGroupOp() {
         return groupOp;
@@ -28,11 +28,11 @@ public class Groups {
         this.rules = rules;
     }
 
-    public List<Groups> getGroups() {
-        return groups;
+    public List<Groups> getGroupsList() {
+        return groupsList;
     }
 
-    public void setGroups(List<Groups> groups) {
-        this.groups = groups;
+    public void setGroupsList(List<Groups> groupsList) {
+        this.groupsList = groupsList;
     }
 }

@@ -21,9 +21,9 @@ public class TestActiveMQPlugin {
         p.start();
         String subject = "测试消息发送";
         //定义发送者
-        ActiveMQKit.addSender(new JmsSender("testsender1",ActiveMQKit.getConnection(), Destination.Queue,subject));
+        ActiveMQKit.addSender(new JmsSender("testsender1",ActiveMQKit.getConnection(), Destination.QUEUE,subject));
         //定义接受者
-        ActiveMQKit.addReceiver(new JmsReceiver("testReceiver1",ActiveMQKit.getConnection(),Destination.Queue,subject));
+        ActiveMQKit.addReceiver(new JmsReceiver("testReceiver1",ActiveMQKit.getConnection(),Destination.QUEUE,subject));
         for (int i = 0; i < 10; i++){
             new Runnable(){
 

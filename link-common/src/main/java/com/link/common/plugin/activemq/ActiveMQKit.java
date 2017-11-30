@@ -11,11 +11,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * @create 2017-11-23 9:38
  */
 public class ActiveMQKit {
-    public static final String DEFAULTNAME = "main";
-    public static final ConcurrentHashMap<String, PooledConnection> POOLEDCONNECTIONMAP = new ConcurrentHashMap<>();
-    public static final ConcurrentHashMap<String, JmsSender> SENDERMAP = new ConcurrentHashMap<>();
-    public static final ConcurrentHashMap<String, JmsReceiver> RECEIVERMAP = new ConcurrentHashMap<>();
+    protected static final String DEFAULTNAME = "main";
+    protected static final ConcurrentHashMap<String, PooledConnection> POOLEDCONNECTIONMAP = new ConcurrentHashMap<>();
+    protected static final ConcurrentHashMap<String, JmsSender> SENDERMAP = new ConcurrentHashMap<>();
+    protected static final ConcurrentHashMap<String, JmsReceiver> RECEIVERMAP = new ConcurrentHashMap<>();
 
+    private ActiveMQKit(){
+        throw new IllegalStateException("ActiveMQKit.class");
+    }
     public static void addSender(JmsSender sender) {
         SENDERMAP.put(sender.getName(), sender);
     }

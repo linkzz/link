@@ -1,13 +1,12 @@
 package com.link.common.plugin.hbase;
 
+import com.jfinal.kit.LogKit;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.client.coprocessor.AggregationClient;
 import org.apache.hadoop.hbase.client.coprocessor.LongColumnInterpreter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,21 +14,25 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by linkzz on 2017-09-22.
+ * Hbase工具类
+ * @author linkzz
+ * @date 2017-09-22
  */
-public class Hbase {
-    private static final Logger logger = LoggerFactory.getLogger(Thread.currentThread().getClass());
+public class HbaseKit {
     private static final String AGGREGATEIMPLEMENTATIONCOPROCESSOR = "org.apache.hadoop.hbase.coprocessor.AggregateImplementation";
-    public static Connection connection;
-    public static AggregationClient aggregationClient;
-    public static LongColumnInterpreter longColumnInterpreter = new LongColumnInterpreter();
+    protected static Connection connection;
+    protected static AggregationClient aggregationClient;
+    protected static LongColumnInterpreter longColumnInterpreter = new LongColumnInterpreter();
 
+    private HbaseKit(){
+        throw new IllegalStateException("HbaseKit.class");
+    }
 
     private static Admin getAdmin(Connection connection) {
         try {
             return connection.getAdmin();
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
         return null;
     }
@@ -43,14 +46,18 @@ public class Hbase {
                 HColumnDescriptor family = new HColumnDescriptor(familyName);
                 hTableDescriptor.addFamily(family);
             }
-            admin.createTable(hTableDescriptor);
+            if (admin != null){
+                admin.createTable(hTableDescriptor);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                admin.close();
+                if (admin != null){
+                    admin.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
     }
@@ -58,22 +65,28 @@ public class Hbase {
     public static void addCoprocessor(String tableName, String className) {
         Admin admin = getAdmin(connection);
         try {
-            admin.disableTable(TableName.valueOf(tableName));
-            HTableDescriptor hTableDescriptor = admin.getTableDescriptor(TableName.valueOf(tableName));
-            hTableDescriptor.addCoprocessor(className);
-            admin.modifyTable(TableName.valueOf(tableName), hTableDescriptor);
+            if (admin != null){
+                admin.disableTable(TableName.valueOf(tableName));
+                HTableDescriptor hTableDescriptor = admin.getTableDescriptor(TableName.valueOf(tableName));
+                hTableDescriptor.addCoprocessor(className);
+                admin.modifyTable(TableName.valueOf(tableName), hTableDescriptor);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                admin.enableTable(TableName.valueOf(tableName));
+                if (admin != null){
+                    admin.enableTable(TableName.valueOf(tableName));
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
             try {
-                admin.close();
+                if (admin != null){
+                    admin.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
     }
@@ -81,15 +94,19 @@ public class Hbase {
     public static void deleteTable(String tableName) {
         Admin admin = getAdmin(connection);
         try {
-            admin.disableTable(TableName.valueOf(tableName));
-            admin.deleteTable(TableName.valueOf(tableName));
+            if (admin != null){
+                admin.disableTable(TableName.valueOf(tableName));
+                admin.deleteTable(TableName.valueOf(tableName));
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                admin.close();
+                if (admin != null){
+                    admin.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
     }
@@ -102,17 +119,21 @@ public class Hbase {
             table = connection.getTable(TableName.valueOf(tableName));
             desc = table.getTableDescriptor();
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                table.close();
+                if (admin != null){
+                    admin.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
             try {
-                admin.close();
+                if (admin != null){
+                    admin.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
         return desc;
@@ -128,12 +149,14 @@ public class Hbase {
             table = connection.getTable(TableName.valueOf(tableName));
             table.put(puts);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                table.close();
+                if (table != null){
+                    table.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
     }
@@ -168,15 +191,17 @@ public class Hbase {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             if (resultScanner != null) {
                 resultScanner.close();
             }
             try {
-                table.close();
+                if (table != null){
+                    table.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
         return results;
@@ -188,12 +213,14 @@ public class Hbase {
             table = connection.getTable(TableName.valueOf(tableName));
             table.delete(del);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                table.close();
+                if (table != null){
+                    table.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
     }
@@ -212,22 +239,24 @@ public class Hbase {
             table = connection.getTable(TableName.valueOf(tableName));
             return table.get(gets);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         } finally {
             try {
-                table.close();
+                if (table != null){
+                    table.close();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.info(e.getMessage());
             }
         }
-        return null;
+        return new Result[0];
     }
 
     public static long rowCount(String tableName, Scan scan) {
         try {
             return aggregationClient.rowCount(TableName.valueOf(tableName), longColumnInterpreter, scan);
         } catch (Throwable e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
         return 0;
     }

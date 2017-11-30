@@ -26,7 +26,7 @@ public class JmsSender {
         // 事务性会话，自动确认消息
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         // 消息的目的地（Queue/Topic）
-        if (type.equals(Destination.Topic)) {
+        if (type.equals(Destination.TOPIC)) {
             Topic destination = session.createTopic(subject);
             producer = session.createProducer(destination);
         } else {

@@ -28,7 +28,7 @@ public class JmsReceiver implements MessageListener {
         // 事务性会话，自动确认消息
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         // 消息的目的地（Queue/Topic）
-        if (type.equals(Destination.Topic)) {
+        if (type.equals(Destination.TOPIC)) {
             Topic destination = session.createTopic(subject);
             consumer = session.createConsumer(destination);
         } else {
@@ -55,30 +55,30 @@ public class JmsReceiver implements MessageListener {
                         Enumeration enumer = msg.getMapNames();
                         while (enumer.hasMoreElements()) {
                             Object obj = enumer.nextElement();
-                            System.out.println(msg.getObject(obj.toString()));
+                            LogKit.info(msg.getObject(obj.toString()).toString());
                         }
                     } else if (message instanceof StreamMessage) {
                         StreamMessage msg = (StreamMessage) message;
                         LogKit.info(msg.readString());
-                        System.out.println(msg.readBoolean());
-                        System.out.println(msg.readLong());
+                        LogKit.info(String.valueOf(msg.readBoolean()));
+                        LogKit.info(String.valueOf(msg.readLong()));
                     } else if (message instanceof ObjectMessage) {
                         ObjectMessage msg = (ObjectMessage) message;
-                        System.out.println(msg);
+                        LogKit.info(msg.toString());
                     } else if (message instanceof BytesMessage) {
                         BytesMessage msg = (BytesMessage) message;
                         byte[] byteContent = new byte[1024];
                         int length = -1;
-                        StringBuffer content = new StringBuffer();
+                        StringBuilder content = new StringBuilder();
                         while ((length = msg.readBytes(byteContent)) != -1) {
                             content.append(new String(byteContent, 0, length));
                         }
-                        System.out.println(content.toString());
+                        LogKit.info(content.toString());
                     } else {
-                        System.out.println(message);
+                        LogKit.info(message.toString());
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LogKit.info(e.getMessage());
                 }
             }
         });

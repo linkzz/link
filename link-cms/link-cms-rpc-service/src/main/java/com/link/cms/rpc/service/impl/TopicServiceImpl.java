@@ -6,6 +6,11 @@ import com.link.cms.model.Topic;
 import com.link.cms.rpc.api.TopicServiceI;
 import com.link.cms.rpc.service.impl.base.BaseServiceImpl;
 
+/**
+  * 专题管理服务
+  * @author linkzz
+  * @create 2017-11-30 12:49
+  */
 public class TopicServiceImpl extends BaseServiceImpl implements TopicServiceI {
     @Override
     public ResultJson save(Topic model) {

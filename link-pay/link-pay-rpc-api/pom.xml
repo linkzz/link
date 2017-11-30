@@ -15,6 +15,12 @@
         <module>link-pay-rpc-api-user</module>
         <module>link-pay-rpc-api-account</module>
         <module>link-pay-rpc-api-fee</module>
+        <module>link-pay-rpc-api-bank</module>
+        <module>link-pay-rpc-api-banklink</module>
+        <module>link-pay-rpc-api-cost</module>
+        <module>link-pay-rpc-api-remit</module>
+        <module>link-pay-rpc-api-trade</module>
+        <module>link-pay-rpc-api-limit</module>
     </modules>
 
 

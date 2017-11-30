@@ -15,6 +15,12 @@
         <module>link-pay-rpc-service-user</module>
         <module>link-pay-rpc-service-account</module>
         <module>link-pay-rpc-service-fee</module>
+        <module>link-pay-rpc-service-bank</module>
+        <module>link-pay-rpc-service-banklink</module>
+        <module>link-pay-rpc-service-cost</module>
+        <module>link-pay-rpc-service-limit</module>
+        <module>link-pay-rpc-service-remit</module>
+        <module>link-pay-rpc-service-trade</module>
     </modules>
 
 

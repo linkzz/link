@@ -1,11 +1,15 @@
 package com.link.common.kit;
 
+import com.jfinal.kit.LogKit;
+import com.jfinal.kit.PropKit;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
 import com.jfinal.plugin.redis.RedisPlugin;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * ip地址操作
@@ -14,18 +18,18 @@ import java.io.FileReader;
  * @create 2017-11-21 18:17
  */
 public class IpKit {
-
+    /**
+     * ip 文件地址
+     */
+    String path;
     Cache ipsCache;
 
-    public IpKit(){
-        /**
-         * ip 文件地址
-         */
-        String path = "C:/Users/chenxun/Desktop/ip.txt";
+    public IpKit(String path){
+        this.path = path;
         try {
             this.ipsCache = this.readFile(path);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
     }
      /**
@@ -38,10 +42,12 @@ public class IpKit {
 
      public boolean isInList(String ip){
          String ipSource = this.ipsCache.get(ipToLong(ip));
+         boolean result = false;
          if (StrKit.isBlank(ipSource)){
-             return false;
+             return result;
          }else {
-             return true;
+             result = true;
+             return result;
          }
      }
 
@@ -52,19 +58,18 @@ public class IpKit {
      * @return
      * @throws Exception
      */
-    public Cache readFile(String path) throws Exception{
+    public Cache readFile(String path) throws IOException{
         //  用于缓存news模块的redis服务
-        RedisPlugin ipsRedis = new RedisPlugin("ips", "192.168.3.9");
+        String ip = PropKit.get("ip");
+        RedisPlugin ipsRedis = new RedisPlugin("ips", ip);
         ipsRedis.start();
         this.ipsCache = Redis.use("ips");
-        FileReader fr=new FileReader(path);
-        BufferedReader br=new BufferedReader(fr);
-        String line=null;
-        while ((line=br.readLine())!=null) {
-            this.ipsCache.set(ipToLong(line),line);
+        try (BufferedReader br = new BufferedReader(new FileReader(this.path))){
+            String line=br.readLine();
+            while (line !=null) {
+                this.ipsCache.set(ipToLong(line),line);
+            }
         }
-        br.close();
-        fr.close();
         return this.ipsCache;
     }
 

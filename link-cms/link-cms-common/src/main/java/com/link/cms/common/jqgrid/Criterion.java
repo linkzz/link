@@ -18,7 +18,7 @@ public class Criterion {
 	/**
 	 * 定义枚举类型 条件类型
 	 */
-	public static enum CriterionType {
+	public enum CriterionType {
 		//相等
 		EQUAL,
 		//相似
@@ -32,7 +32,7 @@ public class Criterion {
 	/**
 	 * 定义枚举类型 比较类型
 	 */
-	public static enum CompareType {
+	public enum CompareType {
 		GT, GTE, LT, LTE, EQ, NE
 	}
 
@@ -210,14 +210,14 @@ public class Criterion {
 	 * @return List<Criterion>
 	 */
 	public List<Criterion> generateSearchCriteriaFromFilters(Filters filters) {
-		List<Criterion> criteria = new ArrayList<Criterion>();
+		List<Criterion> criteria = new ArrayList<>();
 
 		for (Rules rule : filters.getRules()) {
-			String field = rule.getField();
+			String thisfield = rule.getField();
 			String op = rule.getOp();
 			String data = rule.getData();
 
-			Criterion criterion = this.generateSearchCriterion(field, data, op);
+			Criterion criterion = this.generateSearchCriterion(thisfield, data, op);
 
 			if (criterion != null) {
 				criteria.add(criterion);
@@ -383,7 +383,7 @@ public class Criterion {
 	 * @return List<Object>
 	 */
 	public static List<Object> getCriteriaValues(List<Criterion> criteria) {
-		List<Object> criteriaValues = criteria.isEmpty() ? Collections.emptyList() : new ArrayList<Object>();
+		List<Object> criteriaValues = criteria.isEmpty() ? Collections.emptyList() : new ArrayList<>();
 		for (Criterion criterion : criteria) {
 			criteriaValues.add(criterion.getValue());
 		}

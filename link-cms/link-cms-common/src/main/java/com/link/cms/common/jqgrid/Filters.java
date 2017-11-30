@@ -8,9 +8,9 @@ import java.util.List;
  * @date 2017-05-12
  */
 public class Filters {
-    public String groupOp;
-    public List<Rules> rules;
-    public List<Groups> groups;
+    private String groupOp;
+    private List<Rules> rules;
+    private List<Groups> groups;
 
     public String getGroupOp() {
         return groupOp;

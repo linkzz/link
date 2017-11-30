@@ -6,7 +6,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
- * Created by linkzz on 2017-05-17.
+ * spring 插件
+ * @author linkzz
+ * @date 2017-05-17
  */
 public class SpringPlugin implements IPlugin {
     private String[] configurations;
@@ -26,14 +28,23 @@ public class SpringPlugin implements IPlugin {
     @Override
     public boolean start() {
         if(this.ctx != null) {
-            IocInterceptor.ctx = this.ctx;
+            init(this.ctx);
         } else if(this.configurations != null) {
-            IocInterceptor.ctx = new FileSystemXmlApplicationContext(this.configurations);
+            init(new FileSystemXmlApplicationContext(this.configurations));
         } else {
-            IocInterceptor.ctx = new FileSystemXmlApplicationContext(PathKit.getWebRootPath() + "/WEB-INF/applicationContext.xml");
+            init(new FileSystemXmlApplicationContext(PathKit.getWebRootPath() + "/WEB-INF/applicationContext.xml"));
         }
 
         return true;
+    }
+
+    /**
+      * 初始化ApplicationContext 容器
+      * @author linkzz
+      * @create 2017-11-30 11:13
+      */
+    public static void init(ApplicationContext applicationContext){
+        IocInterceptor.ctx = applicationContext;
     }
 
     @Override

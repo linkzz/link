@@ -47,7 +47,7 @@ public class ActiveMQPlugin implements IPlugin {
             connection.start();
             ActiveMQKit.POOLEDCONNECTIONMAP.put(name, connection);
         } catch (JMSException e) {
-            e.printStackTrace();
+            LogKit.info(e.getMessage());
         }
         return true;
     }

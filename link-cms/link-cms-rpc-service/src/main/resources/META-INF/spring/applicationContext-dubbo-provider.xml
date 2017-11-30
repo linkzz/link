@@ -11,6 +11,11 @@
     <dubbo:protocol name="dubbo" port="20880"/>
 
     <bean id="topicService" class="com.link.cms.rpc.service.impl.TopicServiceImpl"/>
-    <dubbo:service interface="com.link.cms.rpc.api.TopicServiceI" ref="topicService"/>
+    <dubbo:service interface="com.link.cms.rpc.api.TopicServiceI"
+                   ref="topicService">
+        <dubbo:method name="sysHello" timeout="2000" loadbalance="random" actives="5" retries="3"/>
+    </dubbo:service>
 
+    <bean id="categorService" class="com.link.cms.rpc.service.impl.CategorServiceImpl"/>
+    <dubbo:service interface="com.link.cms.rpc.api.CategorServiceI" ref="categorService" cluster="failfast"/>
 </beans>
