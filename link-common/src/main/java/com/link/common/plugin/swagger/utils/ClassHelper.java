@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 /**
  * 类操作
- * Created by lee on 16/6/2.
+ *
+ * @author lee
+ * @date 16/6/2
  */
 public final class ClassHelper {
     private static final Logger logger = Logger.getLogger("logger");

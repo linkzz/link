@@ -13,10 +13,16 @@ import java.util.logging.Logger;
 
 /**
  * 类操作 工具类
- * Created by lee on 16/6/1.
+ *
+ * @author lee
+ * @date 16/6/1
  */
 public class ClassUtil {
     private static final Logger logger = Logger.getLogger("logger");
+
+    private ClassUtil(){
+        throw new IllegalStateException("ClassUtil.class");
+    }
 
     /**
      * 获取类加载器

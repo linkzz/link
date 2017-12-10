@@ -4,7 +4,9 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 字符串工具类
- * Created by lee on 16/6/1.
+ *
+ * @author lee
+ * @date 16/6/1
  */
 public class StringUtil {
 
