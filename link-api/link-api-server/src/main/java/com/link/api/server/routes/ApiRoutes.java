@@ -13,8 +13,8 @@ public class ApiRoutes extends Routes {
     @Override
     public void config() {
         setBaseViewPath("/view");
-        add("/api", ApiController.class);
         add("/", IndexController.class);
+        add("/api", ApiController.class);
         add("/order", OrderController.class);
     }
 }

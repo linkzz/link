@@ -51,7 +51,8 @@
         <cron4j.version>2.2.5</cron4j.version>
         <javamelody-core.version>1.70.0</javamelody-core.version>
         <zxing.core.version>3.3.1</zxing.core.version>
-        <swagger.version>2.0.0-rc2</swagger.version>
+        <swagger.version>1.5.6</swagger.version>
+        <echarts.version>3.0.0.2</echarts.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -69,7 +70,7 @@
 
             <dependency>
                 <groupId>com.jfinal</groupId>
-                <artifactId>jfinal</artifactId>
+                <artifactId>jfinal-java8</artifactId>
                 <version>${jfinal.version}</version>
             </dependency>
             <!--文件上传-->
@@ -209,6 +210,11 @@
                 <artifactId>swagger-core</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.abel533</groupId>
+                <artifactId>ECharts</artifactId>
+                <version>${echarts.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -228,7 +234,7 @@
         </dependency>
         <dependency>
             <groupId>com.jfinal</groupId>
-            <artifactId>jfinal</artifactId>
+            <artifactId>jfinal-java8</artifactId>
         </dependency>
         <!--文件上传-->
         <dependency>

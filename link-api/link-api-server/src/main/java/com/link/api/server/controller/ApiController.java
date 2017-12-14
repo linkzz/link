@@ -1,18 +1,6 @@
 package com.link.api.server.controller;
 
-import com.google.common.collect.Maps;
 import com.jfinal.core.Controller;
-import com.link.common.plugin.swagger.annotation.Api;
-import com.link.common.plugin.swagger.annotation.ApiOperation;
-import com.link.common.plugin.swagger.annotation.Param;
-import com.link.common.plugin.swagger.annotation.Params;
-import com.link.common.plugin.swagger.model.SwaggerDoc;
-import com.link.common.plugin.swagger.model.SwaggerPath;
-import com.link.common.plugin.swagger.utils.ClassHelper;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.*;
 
 /**
  * @author linkzz
@@ -24,11 +12,11 @@ public class ApiController extends Controller {
         render("index.html");
     }
 
-    public void api(){
+    /*public void api(){
         SwaggerDoc swaggerDoc = new SwaggerDoc();
         swaggerDoc.setSwagger("2.0");
-        swaggerDoc.setHost("www.link.com");
-        swaggerDoc.setBasePath("/v1");
+        swaggerDoc.setHost("127.0.0.1:8080");
+        swaggerDoc.setBasePath("/");
         SwaggerDoc.InfoBean info = new SwaggerDoc.InfoBean("接口文档测试","v1.0","测试接口文档","www.link.com/terms");
         swaggerDoc.setInfo(info);
         List<String> schemes = new ArrayList<>();
@@ -50,10 +38,10 @@ public class ApiController extends Controller {
                     apiMethod.setOperationId("");
                     apiMethod.addProduce("application/json");
                     for (Annotation annotation : annotations){
+                        Map<String, SwaggerPath.ApiMethod> methodMap = new HashMap<>();
                         Class<? extends Annotation> annotationType = annotation.annotationType();
                         if (ApiOperation.class == annotationType){
                             ApiOperation apiOperation = (ApiOperation) annotation;
-                            Map<String, SwaggerPath.ApiMethod> methodMap = new HashMap<>();
                             apiMethod.setSummary(apiOperation.description());
                             apiMethod.setDescription(apiOperation.description());
                             apiMethod.addTag(apiOperation.tag());
@@ -70,20 +58,19 @@ public class ApiController extends Controller {
                             apiMethod.addParameter(new SwaggerPath.Parameter(param.name(), param.description(), param.required(), param.dataType(), param.format(), param.defaultValue()));
                         }
                     }
-
                 }
             }
         }
 
         if (!classMap.isEmpty()){
-            for (String key : classMap.keySet()){
+            for (Map.Entry<String,String> entry : classMap.entrySet()){
+                String key = entry.getKey();
                 swaggerDoc.addTags(new SwaggerDoc.TagBean(key, classMap.get(key)));
             }
         }
 
         swaggerDoc.setPaths(paths);
         // swaggerUI 使用Java的关键字default作为默认值,此处将生成的JSON替换
-        //renderText(JSON.toJSONString(doc).replaceAll("\"defaultValue\"", "\"default\""));
-        renderJson(swaggerDoc);
-    }
+        renderText(JSON.toJSONString(swaggerDoc).replaceAll("\"defaultValue\"", "\"default\""));
+    }*/
 }

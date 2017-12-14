@@ -16,10 +16,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.link</groupId>
-            <artifactId>link-common</artifactId>
-        </dependency>
     </dependencies>
     <build>
         <finalName>link-api-server</finalName>
