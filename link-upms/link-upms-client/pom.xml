@@ -3,21 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>link</artifactId>
+        <artifactId>link-upms</artifactId>
         <groupId>com.link</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>link-upms</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>link-upms-dao</module>
-        <module>link-upms-common</module>
-        <module>link-upms-rpc-api</module>
-        <module>link-upms-rpc-service</module>
-        <module>link-upms-client</module>
-    </modules>
+    <artifactId>link-upms-client</artifactId>
 
 
 </project>

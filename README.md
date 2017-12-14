@@ -15,3 +15,11 @@
     |  |--link-upms-rpc-service  --rpc接口服务
     |  |--link-upms-client  --集成upms依赖包，提供单点认证、授权、统一会话管理
     |  |--link-upms-server --用户权限系统及sso服务端
+    |--link-cms  --内容管理系统
+    |  |--link-cms-common --cms系统公共模块
+    |  |--link-cms-dao  --dao层代码自动生成，无需开发
+    |  |--link-cms-rpc-api  --cms系统rpc接口
+    |  |--link-cms-rpc-service  --cms系统rpc接口服务
+    |  |--link-cms-admin  --cms管理系统
+    |  |--link-cms-web  --cms前端系统
+    
