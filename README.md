@@ -4,9 +4,9 @@
     link是基于jfinal、dubbo、activemq
 ##组织架构
     link
-    |>>link-common  --公共部分（工具类、及基于jfinal的插件）
-    |>>link-admin  --后台管理系统模板
-    |>>link-ui --基于layui的全套前端解决方案
+    |--link-common  --公共部分（工具类、及基于jfinal的插件）
+    |--link-admin  --后台管理系统模板
+    |--link-ui --基于layui的全套前端解决方案
     |--link-config  --分布式系统配置中心
     |--link-upms --企业内部的权限管理系统（单点登录）
     |  |--link-upms-common --upms系统公共模块

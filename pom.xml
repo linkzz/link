@@ -16,6 +16,7 @@
         <module>link-wechat</module>
         <module>link-config</module>
         <module>link-api</module>
+        <module>link-ui</module>
     </modules>
 
     <properties>
