@@ -1,8 +1,8 @@
-##前言
+## 前言
     link是基于jfinal、dubbo、activemq、redis、shiro、swagger等开源技术搭建的一套中小企业全业务、全渠道的解决方案。
-##项目介绍
+## 项目介绍
     link是基于jfinal、dubbo、activemq
-##组织架构
+## 组织架构
     link
     |--link-common  --公共部分（工具类、及基于jfinal的插件）
     |--link-admin  --后台管理系统模板

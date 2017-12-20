@@ -1,4 +1,4 @@
-##link-pay 是link产品线中的重要产品，采用分布式架构体系构建的第三方支付系统
+## link-pay 是link产品线中的重要产品，采用分布式架构体系构建的第三方支付系统
 link-pay
 |--link-pay-common  --支付系统公共模块
 |--link-pay-api  --第三方支付系统对外接口
