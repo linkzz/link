@@ -1,7 +1,8 @@
 ## 前言
-    link是基于jfinal、dubbo、kafka、activemq、redis、shiro、swagger等开源技术搭建的一套中小企业全业务、全渠道的解决方案。
+    本平台旨在为开发人员提供一个学习当前主流框架技术、开发工具、持续集成、自动化部署、
+    系统检测、无缝升级等java企业级开发解决方案的平台
 ## 项目介绍
-    link是基于jfinal、dubbo、activemq
+    link是基于jfinal、dubbo、kafka、activemq、redis、shiro、swagger等开源技术搭建的一套中小企业全业务、全渠道的解决方案。
 ## 组织架构
     link
     |--link-common  --公共部分（工具类、及基于jfinal的插件）
