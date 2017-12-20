@@ -21,6 +21,9 @@
         <module>link-pay-rpc-api-remit</module>
         <module>link-pay-rpc-api-trade</module>
         <module>link-pay-rpc-api-limit</module>
+        <module>link-pay-rpc-api-payrule</module>
+        <module>link-pay-rpc-api-settlement</module>
+        <module>link-pay-rpc-api-notify</module>
     </modules>
 
 
