@@ -4,6 +4,9 @@
     link-pay
     |--link-pay-common  --支付系统公共模块
     |--link-pay-api  --第三方支付系统对外接口
+    |--link-pay-web  --第三方支付系统交互平台
+    |  |--link-pay-web-admin  --运营管理平台
+    |  |--link-pay-web-gateway  --支付网关系统
     |--link-pay-rpc-api  --支付系统服务接口
     |  |--link-pay-rpc-api-account  --账户服务接口
     |  |--link-pay-rpc-api-bank  --银行管理服务接口
